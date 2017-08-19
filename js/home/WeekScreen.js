@@ -3,9 +3,9 @@
 import React, { PureComponent } from "react";
 import { StyleSheet, Text } from "react-native";
 import { TabViewAnimated, TabBar } from "react-native-tab-view";
-import SimplePage from "./SimplePage";
-import DayScreen from "./DayScreen";
 import type { NavigationState } from "react-native-tab-view/types";
+
+import DayScreen from "./DayScreen";
 
 type Route = {
   key: string,
@@ -32,7 +32,11 @@ class WeekScreen extends PureComponent<void, *, State> {
     });
   };
 
-  _renderHeader = null;
+    _renderPager = props => {
+        const { width, position } = props;
+        console.log('width: '+  width)
+        console.log('position ' + position)
+    };
 
   _renderScene = ({ route }) => {
     switch (route.key) {
@@ -57,7 +61,6 @@ class WeekScreen extends PureComponent<void, *, State> {
         style={[styles.container, this.props.style]}
         navigationState={this.state}
         renderScene={this._renderScene}
-        renderHeader={this._renderHeader}
         onIndexChange={this._handleIndexChange}
         onRequestChangeTab={this._handleIndexChange}
       />
@@ -87,4 +90,4 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = WeekScreen
+module.exports = WeekScreen;

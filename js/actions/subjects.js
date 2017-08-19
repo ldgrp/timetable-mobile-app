@@ -10,11 +10,12 @@ function addSubject(subject, teacher, room, color, day, timeIn, timeOut){
         timeOut: timeOut
     }
 }
-function deleteSubject(subject){
+function deleteSchedule(day, idx){
     return {
-        type: 'DELETE_SUBJECT',
-        subject: subject,
+        type: 'DELETE_SCHEDULE',
+        day: day,
+        idx: idx,
     }
 }
 
-module.exports = { addSubject, deleteSubject }
+module.exports = { addSubject, deleteSchedule }

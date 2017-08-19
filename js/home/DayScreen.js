@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { deleteSubject } from '../actions'
+import { deleteSchedule } from '../actions'
 import SubjectItem from '../common/SubjectItem'
 
 class DayScreen extends Component{
@@ -22,7 +22,7 @@ class DayScreen extends Component{
         return output 
     }
     render(){
-        const { day, subjectList, scheduleList } = this.props
+        const { day, subjectList, scheduleList, dispatch } = this.props
         const list= this.generateFlatlist(day, subjectList, scheduleList)
         return (
             <ScrollView style={styles.container}>
@@ -37,7 +37,7 @@ class DayScreen extends Component{
                             timeOut={item.timeOut}
                             room={item.room}
                             color={item.color}
-                            onItemPress={() => console.log(key)}
+                            onItemPress={() => dispatch(deleteSchedule(day, key))}
                         />
                     )):<View />
                 }

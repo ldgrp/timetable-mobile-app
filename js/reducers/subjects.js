@@ -78,7 +78,20 @@ function subjects(state = initialState, action){
         case 'DELETE_SUBJECT':{
             let { [action.subject]: omit, ...res} = state.subjectList
             return{
-                subjectList: res
+                subjectList: res,
+                scheduleList: state.scheduleList
+            }
+        }
+        case 'DELETE_SCHEDULE':{
+            return {
+                subjectList: state.subjectList,
+                scheduleList:{
+                    ...state.scheduleList,
+                    [action.day]:{
+                        name: [action.day],
+                        schedule: state.scheduleList[action.day].schedule.filter((item, idx) => idx !== action.idx)
+                    }
+                }
             }
         }
         case 'ADD_SCHEDULE':{
